@@ -1,0 +1,22 @@
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+.overlay{
+    style="background-color:  rgba(37, 41, 40, 0.6);"
+}
+.form-text, .asteriskField{
+    display:none;
+}
+.nav-img{
+    height: 30px;
+    width: 30px;
+}
+.col-form-label {
+    font-weight: bold;
+}
+.editprofile{
+    padding-bottom: 20px;
+    padding-top: 10px;
+}

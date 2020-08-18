@@ -5,7 +5,8 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <form action="" method="post" novalidate>
+            <h1><strong style="color: aliceblue;">Sign Up Here!</strong></h1>
+            <form action="" method="post" novalidate style="color: aliceblue;">
                 {% csrf_token %}
                 {{ form|crispy }}
                 <button class="btn btn-sm btn-info">Sign Up</button>

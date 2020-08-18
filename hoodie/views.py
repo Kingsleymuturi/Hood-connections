@@ -20,6 +20,10 @@ def signup(request):
         form = SignupForm()
     return render(request, 'registration/signup.html', {'form': form})
 
+@login_required(login_url='login')
+def index(request):
+    return render(request, 'index.html')
+
 def profile(request, username):
     return render(request, 'profile.html')
 
