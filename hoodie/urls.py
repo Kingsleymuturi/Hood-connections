@@ -7,4 +7,5 @@ urlpatterns = [
     path('account/', include('django.contrib.auth.urls')),
     path('profile/<username>', views.profile, name='profile'),
     path('profile/<username>/edit/', views.edit_profile, name='edit-profile'),
+    path('<hood_id>/new-post', views.create_post, name='post'),
 ]
