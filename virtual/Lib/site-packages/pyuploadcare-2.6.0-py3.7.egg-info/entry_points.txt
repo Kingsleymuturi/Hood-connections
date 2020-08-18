@@ -1,0 +1,3 @@
+[console_scripts]
+ucare = pyuploadcare.ucare_cli:main
+
