@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 from decouple import config,Csv
 
+
 MODE=config("MODE", default="dev")
 SECRET_KEY = config('SECRET_KEY')
 #DEBUG = config('DEBUG', default=False, cast=bool)
@@ -29,13 +30,8 @@ if config('MODE')=="dev":
        }
        
    }
-# production
-else:
-   DATABASES = {
-       'default': dj_database_url.config(
-           default=config('DATABASE_URL')
-       )
-   }
+
+
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

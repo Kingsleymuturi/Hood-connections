@@ -1,0 +1,603 @@
+Metadata-Version: 1.1
+Name: pyuploadcare
+Version: 2.7.0
+Summary: Python library for Uploadcare.com
+Home-page: https://github.com/uploadcare/pyuploadcare
+Author: Uploadcare Inc
+Author-email: hello@uploadcare.com
+License: UNKNOWN
+Description: .. image:: https://ucarecdn.com/2f4864b7-ed0e-4411-965b-8148623aa680/-/inline/yes/uploadcare-logo-mark.svg
+           :target: https://uploadcare.com/?utm_source=github&utm_campaign=pyuploadcare
+           :height: 64 px
+           :width: 64 px
+           :align: left
+        
+        =============================================
+        PyUploadcare: a Python library for Uploadcare
+        =============================================
+        
+        .. image:: https://badge.fury.io/py/pyuploadcare.svg
+           :target: https://badge.fury.io/py/pyuploadcare
+        .. image:: https://travis-ci.org/uploadcare/pyuploadcare.png?branch=master
+           :target: https://travis-ci.org/uploadcare/pyuploadcare
+           :alt: Build Status
+        .. image:: https://readthedocs.org/projects/pyuploadcare/badge/?version=latest
+           :target: https://readthedocs.org/projects/pyuploadcare/?badge=latest
+           :alt: Documentation Status
+        .. image:: https://coveralls.io/repos/github/uploadcare/pyuploadcare/badge.svg?branch=master
+           :target: https://coveralls.io/github/uploadcare/pyuploadcare?branch=master
+           :alt: Coverage
+        .. image:: https://landscape.io/github/uploadcare/pyuploadcare/master/landscape.svg?style=flat
+           :target: https://landscape.io/github/uploadcare/pyuploadcare/master
+           :alt: Code Health
+        .. image:: https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat
+           :target: https://stackshare.io/uploadcare/stacks/
+           :alt: Uploadcare tech stack
+        
+        Simple file uploads for the web are of most importance
+        for us at `Uploadcare`_. Today, everyone is used to the routine of
+        allowing users to upload their pics or attach resumes. The routine
+        covers it all: installing image processing libraries, adjusting permissions,
+        ensuring servers never go down, and enabling CDN.
+        Features like uploading from Facebook or manual crop are weighty,
+        hence rare.
+        Our goal is to change the status quo.
+        
+        This library consists of the `Uploadcare`_ API interface and a couple
+        of Django goodies. You might also want to check out this `guide`_ as
+        a starting point.
+        
+        Simple as that, Uploadcare ``ImageField`` can be added to an
+        existing Django project in just a couple of `simple steps`_.
+        This will enable your users to see the upload progress, pick files
+        from Google Drive or Instagram, and edit a form while files are
+        being uploaded asynchronously.
+        
+        .. code-block:: python
+        
+            from django import forms
+            from django.db import models
+        
+            from pyuploadcare.dj.models import ImageField
+            from pyuploadcare.dj.forms import FileWidget
+        
+        
+            class Candidate(models.Model):
+                photo = ImageField(blank=True, manual_crop="")
+        
+        
+            # optional. provide advanced widget options: https://uploadcare.com/docs/uploads/widget/config/#options
+            class CandidateForm(forms.Form):
+                photo = ImageField(widget=FileWidget(attrs={
+                    'data-cdn-base': 'https://cdn.super-candidates.com',
+                    'data-image-shrink': '1024x1024',
+                }))
+        
+        .. image:: https://ucarecdn.com/dbb4021e-b20e-40fa-907b-3da0a4f8ed70/-/resize/800/manual_crop.png
+        
+        Features
+        --------
+        
+        - Python wrapper for Uploadcare `REST`_ and `Upload`_ APIs.
+        - Django widget with useful manual crop and multi-upload.
+        - *ucare* console utility.
+        - hosted assets (Kudos to `Sławek Ehlert`_!).
+        
+        Requirements
+        ------------
+        
+        ``pyuploadcare`` requires Python 2.7, 3.5, 3.6, 3.7, 3.8.
+        
+        If you're using ``pyuploadcare`` with Django, check ``.travis.yml`` for supported
+        Python-Django combinations.
+        
+        Obsolete versions of Python and Django are officially not supported, but chances
+        are everything still works. If you have to use those, modify tox.ini, test and
+        run at your own risk ;) Or, you may use older versions of the library.
+        
+        Installation
+        ------------
+        
+        In order to install ``pyuploadcare``, simply run:
+        
+        .. code-block:: console
+        
+            $ pip install pyuploadcare
+        
+        or, if you prefer it the old way:
+        
+        .. code-block:: console
+        
+            $ easy_install pyuploadcare
+        
+        Testing
+        -------
+        
+        Besides the `Travis CI`_ we use tox. In order to run tests just:
+        
+        .. code-block:: console
+        
+            $ pip install tox
+            $ tox
+        
+        Security issues
+        ---------------
+        
+        If you think you ran into something in Uploadcare libraries which might have
+        security implications, please hit us up at `bugbounty@uploadcare.com`_
+        or Hackerone.
+        
+        We'll contact you personally in a short time to fix an issue through co-op and
+        prior to any public disclosure.
+        
+        Feedback
+        --------
+        
+        Issues and PRs are welcome. You can provide your feedback or drop us a support
+        request at `hello@uploadcare.com`_.
+        
+        Contributors
+        ------------
+        
+        - `@marselester`_
+        - `@dmitry-mukhin`_
+        - `@zerc`_
+        - `@homm`_
+        - `@va1en0k`_
+        - `@andreshkovskii`_
+        
+        
+        
+        .. _Uploadcare: https://uploadcare.com/?utm_source=github&utm_campaign=pyuploadcare
+        .. _guide: https://uploadcare.com/docs/guides/django/?utm_source=github&utm_campaign=pyuploadcare
+        .. _simple steps: https://pyuploadcare.readthedocs.org/en/latest/quickstart.html
+        .. _Sławek Ehlert: https://github.com/slafs
+        .. _Travis CI: https://travis-ci.org/uploadcare/pyuploadcare
+        .. _REST: https://uploadcare.com/docs/api_reference/rest/?utm_source=github&utm_campaign=pyuploadcare
+        .. _Upload: https://uploadcare.com/docs/api_reference/upload/?utm_source=github&utm_campaign=pyuploadcare
+        .. _@marselester: https://github.com/marselester
+        .. _@dmitry-mukhin: https://github.com/dmitry-mukhin
+        .. _@zerc: https://github.com/zerc
+        .. _@homm: https://github.com/homm
+        .. _@va1en0k: https://github.com/va1en0k
+        .. _@andreshkovskii: https://github.com/andrewshkovskii/
+        
+        .. _bugbounty@uploadcare.com: mailto:bugbounty@uploadcare.com
+        .. _hello@uploadcare.com: mailto:hello@uploadcare.com
+        
+        
+        .. :changelog:
+        
+        History
+        -------
+        
+        All notable changes to this project will be documented in this file.
+        
+        The format is based on `Keep a Changelog`_,
+        and this project adheres to `Semantic Versioning`_.
+        
+        
+        
+        `2.7.0`_ - 2020-05-03
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~
+        
+        Added
+        +++++
+        - Support for signed uploads.
+        
+        Changed
+        +++++++
+        - Dropped support for Python 3.4.
+        - Update bundled widget to version ``3.6.1``. See `widget changelog`_.
+        
+        Fixed
+        +++++
+        - Tests.
+        
+        
+        `2.6.0`_ - 2018-11-29
+        ~~~~~~~~~~~~~~~~~~~~~
+        
+        Changed
+        +++++++
+        
+        - Improved error logging.
+        - Update bundled widget to version ``3.6.1``. See `widget changelog`_.
+        
+        Fixed
+        +++++
+        
+        - `FileWidget.render()` now works in Django 2.1.
+        - Obsolete widget setting `data-upload-base-url` replaced with `data-url-base`
+        
+        
+        2.5.0
+        ~~~~~
+        
+        - Update bundled widget to version ``3.3.0``. See `widget changelog`_.
+        - Update links to the Uploadcare site
+        - Expand data format in 'User-Agent' request header.
+        
+        2.4.0
+        ~~~~~
+        
+        - Change data format in 'User-Agent' request header.
+        
+        2.3.1
+        ~~~~~
+        
+        - Update default widget version to ``3.x``
+        - Update bundled widget to version ``3.2.3``. See `widget changelog`_.
+        
+        2.3.0
+        ~~~~~
+        
+        - Add support for Django versions 1.11 and ~2.0
+        - Miscellaneous updates (version, year in a license file, tox configuration and etc.)
+        - Drop official support for obsolete Python and Django versions.
+          Chances are that everything still works. If you have to use those, modify `tox.ini`,
+          run tests and use at your own risk ;) Or, you may use older versions of the library.
+        
+        2.2.1
+        ~~~~~
+        
+        - Add ``file.create_local_copy`` and ``file.create_remote_copy`` methods.
+        - Add new ``make_public`` and ``pattern`` parameters to file.create_remote_copy method.
+        - Add new ``store`` parameter to file.create_local_copy methods.
+        - Update CDN link to the widget.
+        - Use wildcard ``2.x`` to always get the latest
+          patch or minor version of widget version ``2``. See `widget changelog`_.
+        - Update bundled widget to version ``2.10.3``. See `widget changelog`_.
+        
+        2.1.0
+        ~~~~~
+        
+        - Support auto storing in upload requests
+        - Updated widget to version 2.10.0 (see `widget changelog`_).
+        - Drop support for Python 3.2
+        - Simplify and reduce test matrix in ``.travis.yml``
+        
+        2.0.1
+        ~~~~~
+        
+        - Fixed issue with missing ``ucare_cli`` package.
+        
+        2.0
+        ~~~
+        
+        - Added support for version 0.5 of REST API.
+        - Updated widget to version 2.8.1 (see `widget changelog`_).
+        - Added the ``ucare list_groups`` command.
+        - Removed deprecated entities.
+        
+        **NB**: There are backward incompatible changes. For detailed information about the upgrade process see `update to version 2.0`_.
+        
+        1.3.6
+        ~~~~~
+        
+        - Fixed ZeroDivision error when trying to sync files with no size
+        
+        1.3.5
+        ~~~~~
+        
+        - Added support of Django 1.9
+        - Removed indication of Unicode strings from output of `ucare`
+        - Fixed a group representation for `ucare create_group` command
+        - Fixed error with `ucare sync` when trying to processing of not image files
+        
+        1.3.4
+        ~~~~~
+        
+        - Added storage operations
+        - Added request_limit to ucare_cli
+        
+        1.3.3
+        ~~~~~
+        
+        - Expanded User-Agent
+        
+        1.3.2
+        ~~~~~
+        
+        - Added sync command to ucare_cli
+        - Autogenerated documentation for ucare_cli
+        - update widget to 2.5.5 (see `widget changelog`_)
+        
+        1.3.1
+        ~~~~~
+        
+        - Default CDN base to https://ucarecdn.com
+        - Allow changing CDN base via Django settings
+        - update widget to 2.5.0 (see `widget changelog`_)
+        
+        1.3.0
+        ~~~~~
+        
+        - API version was updated up to *0.4*.
+        - update widget to 2.4.0 (see `widget changelog`_)
+        
+        1.2.15
+        ~~~~~~
+        
+        - update widget to 2.3.1 (see `widget changelog`_)
+        
+        
+        1.2.14
+        ~~~~~~
+        
+        - update widget to 1.5.5 (see `widget changelog`_)
+        
+        
+        1.2.13
+        ~~~~~~
+        
+        - improve synchronous upload API
+        - fix encoding issues with pip3
+        - update widget to 1.5.4 (see `widget changelog`_)
+        - add AUTHORS.txt
+        
+        
+        1.2.12
+        ~~~~~~
+        
+        - add synchronous upload from URL method to `File`
+        - UploadcareExceptions are `__repr__`'ed properly
+        - update widget to 1.5.3 (see `widget changelog`_)
+        
+        
+        1.2.11
+        ~~~~~~
+        
+        - fix "source" composition for copy requests
+        - let configure default throttle retry count via `conf.retry_throttled`
+        
+        
+        1.2.10
+        ~~~~~~
+        
+        - handle responses for HEAD and OPTION requests
+        - update widget to 1.4.6
+        
+        
+        1.2.9
+        ~~~~~
+        
+        - compatibility with Django 1.7
+        
+        
+        1.2.8
+        ~~~~~
+        
+        - update widget to 1.4.0
+        
+        
+        1.2.7
+        ~~~~~
+        
+        - handle rest api throttling
+        
+        
+        1.2.6
+        ~~~~~
+        
+        - update widget to 1.2.3
+        - fixed compatibility with six library version 1.7.0 and above
+        
+        
+        1.2.5
+        ~~~~~
+        
+        - fixed setup script
+        
+        
+        1.2.4
+        ~~~~~
+        
+        - update widget to 1.0.1
+        - fixed logging when response contains unicode chars
+        
+        
+        1.2.3
+        ~~~~~
+        
+        - update widget to 0.17.1
+        
+        
+        1.2.2
+        ~~~~~
+        
+        - add File.copy()
+        - add data attribute to UploadcareException
+        - update widget to 0.13.2
+        - update pyuploadcare.dj.models.ImageField crop validation
+        
+        
+        1.2.1
+        ~~~~~
+        
+        ``https://ucarecdn.com/`` URL was returned to serve widget's assets.
+        
+        
+        1.2
+        ~~~
+        
+        - CDN URL has been changed to ``http://www.ucarecdn.com/``. Previous URL
+          ``https://ucarecdn.com/`` is depricated.
+        - Widget was updated up to *0.10.1*.
+        
+        1.1
+        ~~~
+        
+        - Widget was updated up to *0.10*.
+        - Default API version was updated up to *0.3*.
+        - Django settings were merged into UPLOADCARE dictionary.
+        - Performance was improved by reusing requests' session.
+        
+        1.0.2
+        ~~~~~
+        
+        ``UnicodeDecodeError`` was fixed. This bug appears when
+        `request <https://pypi.python.org/pypi/requests/>`_'s ``method``
+        param is unicode and ``requests.request()`` got ``files`` argument, e.g.:
+        
+        .. code-block:: python
+        
+            >>> requests.request(u'post', u'http://httpbin.org/post',
+            ...                  files={u'file': open('README.rst', 'rb')})
+            UnicodeDecodeError: 'ascii' codec can't decode byte 0xc5 ...
+        
+        1.0.1
+        ~~~~~
+        
+        - Widget was updated up to *0.8.1.2*.
+        - It was invoking ``File.store()``, ``FileGroup.store()`` methods on every
+          model instance saving, e.g.:
+        
+          .. code-block:: python
+        
+              photo.title = 'new title'
+              photo.save()
+        
+          Now it happens while saving by form, namely by calling
+          ``your_model_form.is_valid()``. There is other thing that can trigger
+          storing -- calling ``photo.full_clean()`` directly.
+        
+        1.0
+        ~~~
+        
+        - Python 3.2, 3.3 support were added.
+        - File Group creating was added.
+        - Methods per API field for File, FileGroup were added.
+        - Deprecated things were deleted. This version is not backward compatible.
+          For detailed information see
+          https://pyuploadcare.readthedocs.org/en/v0.19/deprecated.html
+        
+        0.19
+        ~~~~
+        
+        - Multiupload support was added.
+        - ``argparse`` was added into ``setup.py`` requirements.
+        - Documentation was added and published on https://pyuploadcare.readthedocs.org
+        
+        0.18
+        ~~~~
+        
+        - Widget was updated up to *0.6.9.1*.
+        
+        0.17
+        ~~~~
+        
+        - ``ImageField`` was added. It provides uploading only image files. Moreover,
+          you can activate manual crop, e.g. ``ImageField(manual_crop='2:3')``.
+        - More appropriate exceptions were added.
+        - Tests were separated from library and were restructured.
+        - Widget was updated up to *0.6.7*.
+        - Issue of ``FileField``'s ``blank``, ``null`` attributes was fixed.
+        
+        0.14
+        ~~~~
+        
+        - Replace accept header for old api version
+        
+        0.13
+        ~~~~
+        
+        - Fix unicode issue on field render
+        
+        0.12
+        ~~~~
+        
+        - Add new widget to pyuploadcare.dj
+        - Remove old widget
+        - Use https for all requests
+        
+        0.11
+        ~~~~
+        
+        - Add cdn_base to Ucare.__init__
+        - Get rid of api v.0.1 support
+        - Add File.ensure_on_s3 and File.ensure_on_cdn helpers
+        - Add File properties is_on_s3, is_removed, is_stored
+        - Fix url construction
+        - Add and correct waiting to upload and upload_from_url
+        
+        0.10
+        ~~~~
+        
+        - Add console log handler to ucare
+        - Add wait argument to ucare store and delete commands
+        - Fix ucare arg handling
+        
+        0.9
+        ~~~
+        
+        - Add bunch of arguments to ucare upload and upload_via_url commands
+        - Fix UploadedFile.wait()
+        
+        0.8
+        ~~~
+        
+        - Fix file storing for old API
+        - Replaced Authentication header with Authorization
+        - Log warnings found in HTTP headers
+        - Replace old resizer with new CDN
+        - Add verify_api_ssl, verify_upload_ssl options
+        - Add custom HTTP headers to API and upload API requests
+        
+        0.7
+        ~~~
+        
+        - Added __version__
+        - Added 'User-Agent' request header
+        - Added 'Accept' request header
+        - Added ucare config file parsing
+        - Added pyuploadcare/tests.py
+        - Replaced upload API
+        - Replaced File.keep with File.store, File.keep is deprecated
+        - File.store uses new PUT request
+        - Added timeouts to File.store, File.delete
+        - Added upload and upload_from_url to ucare
+        - Added tests during setup
+        - Replaced httplib with requests, support https (certificates for api requests are verified)
+        - Added api_version arg to UploadCare, default is 0.2
+        
+        0.6
+        ~~~
+        
+        - Added ucare cli utility
+        - Added PYUPLOADCARE_UPLOAD_BASE_URL setting
+        - Added PYUPLOADCARE_WIDGET_URL
+        - Updated widget assets to version 0.0.1
+        - Made properties out of following pyuploadcare.file.File's methods:
+        
+          - api_uri()
+          - url()
+          - filename()
+        - Changed pyuploadcare.UploadCareException.__init__
+        
+        
+        .. _widget changelog: https://github.com/uploadcare/uploadcare-widget/blob/master/HISTORY.markdown
+        .. _update to version 2.0: https://pyuploadcare.readthedocs.io/en/stable/install.html#update-to-version-2-0
+        .. _Keep a Changelog: https://keepachangelog.com/en/1.0.0/
+        .. _Semantic Versioning: https://semver.org/spec/v2.0.0.html
+        
+        .. _Unreleased: https://github.com/uploadcare/pyuploadcare/compare/v2.7.0...HEAD
+        .. _2.6.0: https://github.com/uploadcare/pyuploadcare/compare/v2.5.0...v2.6.0
+        .. _2.7.0: https://github.com/uploadcare/pyuploadcare/compare/v2.6.0...v2.7.0
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.11
+Classifier: Framework :: Django :: 2.0
+Classifier: Framework :: Django :: 2.1
+Classifier: Framework :: Django :: 2.2
+Classifier: Framework :: Django :: 3.0
+Classifier: License :: OSI Approved :: MIT License
