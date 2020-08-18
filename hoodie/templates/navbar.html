@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+    <div class="container-fluid">
+
+        <div class="collapse navbar-collapse" style="margin-right: 4%;" id="navbarSupportedContent">
+            <ul class="nav navbar-nav ml-auto navbar-right">
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                       aria-haspopup="true"
+                       aria-expanded="false">{{ user.username|title }} <img class="rounded-circle nav-img"
+                        src="{{ user.profile.profile_picture.url }}"
+                        alt="">
+                    </a>
+                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                        <a href="{% url 'profile' user.username %}">
+                            <img class="rounded-circle nav-img"src="{{ user.profile.profile_picture.url }}" alt="">
+                            &nbsp; Profile
+                        </a>
+                        <hr>
+                        <a href="{% url 'edit-profile' user.username %}">
+                            <i class="fas fa-edit"></i>&nbsp;
+                            &nbsp; Edit Profile
+                        </a>
+                        <hr>
+                        <a href="{% url 'logout' %}" class="btn btn-sm btn-outline-danger d-block mx-auto"> Logout</a>
+
+
+                    </div>
+                </li>
+                {% else %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
