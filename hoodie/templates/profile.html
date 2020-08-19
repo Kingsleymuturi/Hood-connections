@@ -4,14 +4,14 @@
 <div class="container ">
     <div class="row">
         <div class="col-md-3"></div>
-        <div class="col-md-6 mt-4 prof mr-2 ml-2" style="background-color: rgba(37, 41, 40, 0.6);">
+        <div class="col-md-6 mt-4 prof mr-2 ml-2" style="background-color: rgba(255, 255, 255, 0.74);">
             <img class="rounded-circle account-img d-block mx-auto" src="{{ user.profile.profile_picture.url }}"height="125px" width="125px">
-            <h5 class="text-center mt-3" style="color: aliceblue;">{{user.username}}</h5>
-            <p class="text-center" style="color: aliceblue;"> {{user.email}}</p>
-            <p class="text-center" style="color: yellowgreen;"> {{user.profile.bio}}</p>
-            <p class="text-center" style="color: aliceblue;">My Location:{{user.profile.location}}</p>
+            <h5 class="text-center mt-3"><strong>{{user.username}}</strong></h5>
+            <p class="text-center"><strong>{{user.email}}</strong></p>
+            <p class="text-center" style="color: mediumblue;"><strong>{{user.profile.bio}}</strong></p>
+            <p class="text-center"><strong>My Location:{{user.profile.location}}</strong></p>
             {% if request.user.profile.neighbourhood %}
-            <p class="text-center">My Hood <a class="btn btn-sm btn-info" href="{% url 'single-hood' user.profile.neighbourhood.id %}">{{ user.profile.neighbourhood.name }}</a>
+            <p class="text-center"><strong>My Hood:</strong> <a class="btn btn-sm button" href="{% url 'single-hood' user.profile.neighbourhood.id %}">{{ user.profile.neighbourhood.name }}</a>
             </p>
             {% endif %}
         </div>

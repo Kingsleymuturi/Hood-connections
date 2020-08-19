@@ -107,3 +107,7 @@ ul.CTAs a {
     background-size: cover;
 }
 
+.button{
+    border-color: mediumslateblue;
+    color: blue;
+}

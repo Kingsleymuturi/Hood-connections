@@ -7,9 +7,9 @@
     <div class="row">
         {% for hood in all_hoods %}
         <div class="col-md-4">
-            <div class="card mb-4" style="min-height:340px; background-color: burlywood;">
+            <div class="card mb-4" style="min-height:340px; background-color: rgb(199, 187, 172);">
                 <img src="{{ hood.hood_logo.url }}" class="card-img-top" alt="{{ hood.name }}" style="height: 170px;">
-                <div class="card-body">
+                <div class="card-body" style="height: 175px;">
                     <h5 class="card-title">{{ hood.name }}  ({{hood.location}})</h5>
                     <span><strong>{{hood.members.count}} member{{hood.members.count|pluralize}}</strong></span>
                     <p class="card-text">{{hood.description}}</p>
