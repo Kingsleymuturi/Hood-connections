@@ -3,19 +3,19 @@
 {% block content %}
 <div class="container">
     <h1 style="color: aliceblue;" class="text-center">Join your Hood of choice here🏡!</h1>
-        <a href="{% url 'new-hood' %}" class="btn btn-sm btn-info mb-2"> New Hood</a>
+        <a href="{% url 'new-hood' %}" class="btn btn-sm btn-outline-warning mb-2" style="margin-left: 40%;">Create New Hood</a><br><br>
     <div class="row">
         {% for hood in all_hoods %}
         <div class="col-md-4">
-            <div class="card mb-4" style="min-height:340px">
-                <img src="{{ hood.hood_logo.url }}" class="card-img-top" alt="{{ hood.name }}">
+            <div class="card mb-4" style="min-height:340px; background-color: burlywood;">
+                <img src="{{ hood.hood_logo.url }}" class="card-img-top" alt="{{ hood.name }}" style="height: 170px;">
                 <div class="card-body">
                     <h5 class="card-title">{{ hood.name }}  ({{hood.location}}) <span class="ml-4">{{hood.members.count}} member{{hood.members.count|pluralize}}</span></h5>
                     <p class="card-text">{{hood.description}}</p>
                     {% if request.user.profile.neighbourhood == hood %}
                     <a href="{% url 'leave-hood' hood.id %}" class="btn btn-outline-danger btn-sm">Leave Hood</a>
                     {% elif not request.user.profile.neighbourhood %}
-                    <a href="{% url 'join-hood' hood.id %}" class="btn btn-primary btn-sm">Join Hood</a>
+                    <a href="{% url 'join-hood' hood.id %}" class="btn btn-sm" style="background-color: white;">Join Hood</a>
                     {% endif %}
                 </div>
             </div>
