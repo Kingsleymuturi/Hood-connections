@@ -9,12 +9,13 @@
         <div class="col-md-4">
             <div class="card mb-4" style="min-height:340px; background-color: rgb(199, 187, 172);">
                 <img src="{{ hood.hood_logo.url }}" class="card-img-top" alt="{{ hood.name }}" style="height: 170px;">
-                <div class="card-body" style="height: 175px;">
+                <div class="card-body" style="height: 185px;">
                     <h5 class="card-title">{{ hood.name }}  ({{hood.location}})</h5>
                     <span><strong>{{hood.members.count}} member{{hood.members.count|pluralize}}</strong></span>
                     <p class="card-text">{{hood.description}}</p>
                     {% if request.user.profile.neighbourhood == hood %}
                     <a href="{% url 'leave-hood' hood.id %}" class="btn btn-outline-danger btn-sm">Leave Hood</a>
+                    <a class="btn btn-sm btn-warning" href="{% url 'single-hood' user.profile.neighbourhood.id %}">Hood info</a>
                     {% elif not request.user.profile.neighbourhood %}
                     <a href="{% url 'join-hood' hood.id %}" class="btn btn-sm" style="background-color: white;">Join Hood</a>
                     {% endif %}
