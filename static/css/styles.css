@@ -100,5 +100,10 @@ ul.CTAs a {
     padding-left: 0px;
     min-height: 100vh;
     transition: all 0.3s;
+    background-image: url(/static/images/background.jpg);
+    background-color: rgba(13, 14, 14, 0.6);
+    background-blend-mode: darken;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 

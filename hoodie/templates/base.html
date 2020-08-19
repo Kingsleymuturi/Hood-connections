@@ -17,13 +17,13 @@
 <body>
     <div class="wrapper">
         
-        <div id="content" style="background-image: url({% static 'images/background.jpg' %}); background-repeat:no-repeat;background-size:cover">
+        <div id="content"> 
         {% include 'navbar.html' %}
 
           {% block content %}
 
           {% endblock %}
-           </div>
+        </div>
     </div>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

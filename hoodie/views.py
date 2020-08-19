@@ -15,7 +15,7 @@ def signup(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('hoods')
+            return redirect('index')
     else:
         form = SignupForm()
     return render(request, 'registration/signup.html', {'form': form})
@@ -36,7 +36,7 @@ def edit_profile(request, username):
     return render(request, 'editprofile.html', {'form': form})
 
 @login_required(login_url='login')
-def hoods(request):
+def index(request):
     all_hoods = NeighbourHood.objects.all()
     all_hoods = all_hoods[::-1]
     params = {
@@ -51,7 +51,7 @@ def create_hood(request):
             hood = form.save(commit=False)
             hood.admin = request.user.profile
             hood.save()
-            return redirect('hood')
+            return redirect('index')
     else:
         form = NeighbourHoodForm()
     return render(request, 'newhood.html', {'form': form})
@@ -60,11 +60,11 @@ def join_hood(request, id):
     neighbourhood = get_object_or_404(NeighbourHood, id=id)
     request.user.profile.neighbourhood = neighbourhood
     request.user.profile.save()
-    return redirect('hood')
+    return redirect('index')
 
 
 def leave_hood(request, id):
     hood = get_object_or_404(NeighbourHood, id=id)
     request.user.profile.neighbourhood = None
     request.user.profile.save()
-    return redirect('hood')
+    return redirect('index')
