@@ -15,14 +15,10 @@ def signup(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('index')
+            return redirect('hoods')
     else:
         form = SignupForm()
     return render(request, 'registration/signup.html', {'form': form})
-
-@login_required(login_url='login')
-def index(request):
-    return render(request, 'index.html')
 
 def profile(request, username):
     return render(request, 'profile.html')
@@ -38,3 +34,12 @@ def edit_profile(request, username):
     else:
         form = UpdateProfileForm(instance=request.user.profile)
     return render(request, 'editprofile.html', {'form': form})
+
+@login_required(login_url='login')
+def hoods(request):
+    all_hoods = NeighbourHood.objects.all()
+    all_hoods = all_hoods[::-1]
+    params = {
+        'all_hoods': all_hoods,
+    }
+    return render(request, 'index.html', params)
