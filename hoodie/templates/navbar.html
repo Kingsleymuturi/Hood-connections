@@ -7,6 +7,7 @@
                 {% if user.is_authenticated %}
                 <a href="{% url 'new-hood' %}" style="font-size: 13px;height: 27px;margin-top: 2.9%;" class="btn btn-sm btn-outline-warning mb-2">Create New Hood</a>
                 <a class="nav-link" href="/" style="text-decoration: none;color: white;margin-top: 0.6%;">Home</a>
+                <a class="nav-link" href="/admin" style="text-decoration: none;color: white;margin-top: 0.6%;">Admins</a>
                 {% endif %}
                 {% if user.is_authenticated %}
                 <li class="nav-item dropdown">

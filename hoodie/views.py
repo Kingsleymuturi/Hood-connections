@@ -1,9 +1,9 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import SignupForm, UpdateProfileForm, NeighbourHoodForm, PostForm
+from .forms import SignupForm, UpdateProfileForm, NeighbourHoodForm, PostForm, BusinessForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from .models import NeighbourHood, Profile
+from .models import NeighbourHood, Profile, Post, Business
 from django.contrib.auth.models import User
 
 def signup(request):
@@ -110,3 +110,18 @@ def hood_members(request, hood_id):
     hood = NeighbourHood.objects.get(id=hood_id)
     members = Profile.objects.filter(neighbourhood=hood)
     return render(request, 'members.html', {'members': members})
+
+def search_business(request):
+    if request.method == 'GET':
+        name = request.GET.get("title")
+        results = Business.objects.filter(name__icontains=name).all()
+        print(results)
+        message = f'name'
+        params = {
+            'results': results,
+            'message': message
+        }
+        return render(request, 'results.html', params)
+    else:
+        message = "You haven't searched for any image category"
+    return render(request, "results.html")

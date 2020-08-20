@@ -4,7 +4,7 @@ body {
     background: #fafafa;
 }
 .overlay{
-    style="background-color:  rgba(37, 41, 40, 0.6);"
+    background-color:  rgba(37, 41, 40, 0.6);
 }
 .form-text, .asteriskField{
     display:none;
@@ -110,4 +110,10 @@ ul.CTAs a {
 .button{
     border-color: mediumslateblue;
     color: blue;
+}
+
+.hoodie{
+    padding-bottom: 20px;
+    padding-top: 10px;
+    margin-top: -1%;
 }
