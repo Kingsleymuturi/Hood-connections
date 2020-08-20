@@ -72,6 +72,7 @@ INSTALLED_APPS = [
     'hoodie',
     'pyuploadcare.dj',
     'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 REST_FRAMEWORK = {
