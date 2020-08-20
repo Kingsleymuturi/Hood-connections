@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'hoodie',
     'pyuploadcare.dj',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
