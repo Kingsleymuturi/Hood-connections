@@ -1,11 +1,22 @@
 from rest_framework import serializers
-from hoodie.models import NeighbourHood
+from hoodie.models import NeighbourHood,Profile
 from django.contrib.auth.models import User
 
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ['name','location','bio','profile_picture',]
+
+
 class HoodSerializer(serializers.ModelSerializer):
+    admin_username = serializers.SerializerMethodField('get_admin_username')
     class Meta:
         model = NeighbourHood
-        fields = ['admin','name','location','description','hood_logo','health_tell','police_number']
+        fields = ['name','location','description','hood_logo','health_tell','police_number','admin_username']
+
+    def get_admin_username(self,hood):
+        username = hood.admin.name
+        return username
 
 class RegistrationSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(style={'input_type': 'password'}, write_only=True)
