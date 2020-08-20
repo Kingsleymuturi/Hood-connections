@@ -5,7 +5,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('hoodie.urls'))
+    path('', include('hoodie.urls')),
+
+    #REST URL
+    path('api/', include('hoodie.api.urls'))
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
