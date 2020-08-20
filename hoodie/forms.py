@@ -21,3 +21,8 @@ class NeighbourHoodForm(forms.ModelForm):
     class Meta:
         model = NeighbourHood
         exclude = ('admin',)
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        exclude = ('user', 'hood')
