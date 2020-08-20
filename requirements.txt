@@ -2,8 +2,10 @@ astroid==2.4.2
 certifi==2020.6.20
 chardet==3.0.4
 colorama==0.4.3
+dj-database-url==0.5.0
 Django==2.0.2
 django-crispy-forms==1.7.2
+django-heroku==0.3.1
 djangorestframework==3.10.3
 idna==2.8
 isort==4.3.21
@@ -21,4 +23,5 @@ six==1.15.0
 toml==0.10.1
 typed-ast==1.4.1
 urllib3==1.25.10
+whitenoise==5.2.0
 wrapt==1.12.1
