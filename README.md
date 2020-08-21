@@ -87,3 +87,6 @@ Feel free to reachout
 * kingsleymuturi@gmail.com
 * TomKoech@gmail.com
 * sarahsindet@gmail.com
+
+### [LICENSE](https://github.com/Kingsleymuturi/Hood-connections/blob/master/LICENSE)
+Copyright (c) 2020 [Kingsley Muturi ](https://github.com/Kingsleymuturi), [Sarah Sindet ](https://github.com/sarahsindet), [Tom Koech ](https://github.com/Ko3ch)
